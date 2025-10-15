@@ -1,0 +1,381 @@
+{
+  "meta": {
+    "project": "AI Resume Interview System",
+    "date": "2025-10-14",
+    "prepared_by": "AI Assistant"
+  },
+  "product_overview": "The AI Resume Interview System is a web application that leverages AI to enhance recruitment and interview preparation processes. It allows users to upload resumes, receive AI-generated interview questions tailored to job roles, and get AI-driven answer evaluations. The system also offers ATS compatibility checks and an admin dashboard for insights and reporting, all delivered with a modern, professional, and accessible user interface.",
+  "core_goals": [
+    "Enable seamless user authentication with role-based access control for admins and users.",
+    "Allow users to upload PDF resumes and extract relevant text for AI analysis.",
+    "Generate personalized interview questions based on uploaded resumes and selected job roles.",
+    "Provide AI-powered evaluation and detailed feedback on users' interview answers.",
+    "Perform Applicant Tracking System (ATS) compatibility analysis with skill gap identification and recommendations.",
+    "Offer an admin dashboard for user management, analytics, and report generation.",
+    "Deliver a modern, responsive, and accessible UI/UX consistent across devices and compliant with WCAG 2.1 standards."
+  ],
+  "key_features": [
+    "User Authentication system with secure login, registration, and session management supporting admin and user roles.",
+    "Resume upload functionality with PDF text extraction and AI-powered analysis for job role matching.",
+    "AI Interview Questions Generation tailored to resume content and job roles.",
+    "Answer Evaluation feature using AI to score and provide feedback on user responses.",
+    "ATS Score Analysis providing compatibility scoring and skill gap recommendations.",
+    "Admin Dashboard featuring user data visualization, analytics, and PDF report downloads.",
+    "Comprehensive UI/UX redesign including card-based layouts, gradient backgrounds, icons integration, and accessibility enhancements.",
+    "Responsive design ensuring optimal usability on mobile, tablet, and desktop devices.",
+    "Enhanced JavaScript components including speech recognition error handling, drag-and-drop file uploads, and accessible modals."
+  ],
+  "user_flow_summary": [
+    "User registers or logs in via the authentication system with role-based access controls.",
+    "Upon login, user uploads resume PDF, specifying job role and preferences (number of questions, inclusion of HR questions).",
+    "System extracts resume text and performs AI analysis to generate personalized interview questions.",
+    "User views and answers generated interview questions with AI evaluation providing detailed feedback and scoring.",
+    "Users can perform an ATS compatibility check on their resume with skill gap analysis results.",
+    "Admin users access the dashboard to view user analytics, generate reports, and download PDF summaries.",
+    "Throughout the platform, users experience a modern, accessible, and responsive UI optimized for all devices."
+  ],
+  "validation_criteria": [
+    "Successful user authentication with role-based access verified through registration, login, and logout processes.",
+    "Accurate PDF resume upload handling and text extraction resulting in relevant AI-driven analysis.",
+    "Generation of interview questions that reflect uploaded resume data and selected job roles.",
+    "Accurate AI evaluation of user-submitted answers with detailed feedback and scoring delivered promptly.",
+    "Correct ATS compatibility scoring with actionable skill gap recommendations provided.",
+    "Admin dashboard data displays user analytics accurately and allows PDF report downloads.",
+    "UI adheres to the redesigned design system with consistent color palette, typography, spacing, and accessibility features.",
+    "Responsive design behaves consistently across major devices: mobile, tablet, and desktop.",
+    "JavaScript enhancements like speech recognition and drag-and-drop file uploads function reliably with proper error handling."
+  ],
+  "code_summary": {
+    "tech_stack": [
+      "Python",
+      "Flask",
+      "MySQL",
+      "Cohere AI",
+      "PyPDF2",
+      "ReportLab",
+      "HTML/CSS/JavaScript",
+      "Bootstrap"
+    ],
+    "features": [
+      {
+        "name": "User Authentication",
+        "description": "User login, registration, and session management system with role-based access control (admin/user)",
+        "files": [
+          "ai_interview_system/app.py",
+          "ai_interview_system/database.py",
+          "ai_interview_system/templates/login.html",
+          "ai_interview_system/templates/register.html"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "User Authentication API",
+            "version": "1.0.0"
+          },
+          "paths": {
+            "/login": {
+              "post": {
+                "summary": "User login",
+                "requestBody": {
+                  "content": {
+                    "application/x-www-form-urlencoded": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "username": {
+                            "type": "string"
+                          },
+                          "password": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Login successful"
+                  },
+                  "401": {
+                    "description": "Invalid credentials"
+                  }
+                }
+              }
+            },
+            "/register": {
+              "post": {
+                "summary": "User registration",
+                "requestBody": {
+                  "content": {
+                    "application/x-www-form-urlencoded": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "username": {
+                            "type": "string"
+                          },
+                          "password": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "/logout": {
+              "get": {
+                "summary": "User logout",
+                "responses": {
+                  "302": {
+                    "description": "Redirect to login"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Resume Upload and Analysis",
+        "description": "PDF resume upload, text extraction, and AI-powered analysis with job role matching",
+        "files": [
+          "ai_interview_system/app.py",
+          "ai_interview_system/templates/index.html"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "Resume Upload API",
+            "version": "1.0.0"
+          },
+          "paths": {
+            "/upload_resume": {
+              "post": {
+                "summary": "Upload and analyze resume",
+                "requestBody": {
+                  "content": {
+                    "multipart/form-data": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "resume": {
+                            "type": "string",
+                            "format": "binary"
+                          },
+                          "question_count": {
+                            "type": "integer"
+                          },
+                          "job_role": {
+                            "type": "string"
+                          },
+                          "include_hr_questions": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Questions generated successfully"
+                  },
+                  "400": {
+                    "description": "Invalid file or parameters"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "AI Interview Questions Generation",
+        "description": "Generate personalized interview questions based on resume content and selected job role",
+        "files": [
+          "ai_interview_system/app.py",
+          "ai_interview_system/templates/questions.html"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "Interview Questions API",
+            "version": "1.0.0"
+          },
+          "paths": {
+            "/questions": {
+              "get": {
+                "summary": "Display generated interview questions",
+                "responses": {
+                  "200": {
+                    "description": "Questions page rendered"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Answer Evaluation",
+        "description": "AI-powered evaluation of interview answers with detailed feedback and scoring",
+        "files": [
+          "ai_interview_system/app.py",
+          "ai_interview_system/templates/questions.html"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "Answer Evaluation API",
+            "version": "1.0.0"
+          },
+          "paths": {
+            "/evaluate_answer": {
+              "post": {
+                "summary": "Evaluate interview answer",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "answer": {
+                            "type": "string"
+                          },
+                          "question_index": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Evaluation completed"
+                  },
+                  "500": {
+                    "description": "Evaluation failed"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "ATS Score Analysis",
+        "description": "Applicant Tracking System compatibility scoring with skill gap analysis and recommendations",
+        "files": [
+          "ai_interview_system/app.py",
+          "ai_interview_system/templates/index.html"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "ATS Analysis API",
+            "version": "1.0.0"
+          },
+          "paths": {
+            "/check_ats": {
+              "post": {
+                "summary": "Analyze resume ATS compatibility",
+                "requestBody": {
+                  "content": {
+                    "multipart/form-data": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "resume": {
+                            "type": "string",
+                            "format": "binary"
+                          },
+                          "job_role": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "ATS analysis completed"
+                  },
+                  "400": {
+                    "description": "No file uploaded"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Admin Dashboard",
+        "description": "Administrative interface for viewing user data, analytics, and generating reports",
+        "files": [
+          "ai_interview_system/app.py",
+          "ai_interview_system/templates/admin_dashboard.html"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "Admin Dashboard API",
+            "version": "1.0.0"
+          },
+          "paths": {
+            "/admin_dashboard": {
+              "get": {
+                "summary": "Admin dashboard view",
+                "responses": {
+                  "200": {
+                    "description": "Dashboard rendered"
+                  },
+                  "302": {
+                    "description": "Redirect if not admin"
+                  }
+                }
+              }
+            },
+            "/download_pdf": {
+              "get": {
+                "summary": "Download admin report PDF",
+                "responses": {
+                  "200": {
+                    "description": "PDF report generated"
+                  },
+                  "302": {
+                    "description": "Redirect if not admin"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Database Management",
+        "description": "MySQL database operations for user management, session data, and analytics storage",
+        "files": [
+          "ai_interview_system/database.py"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "Database Management",
+            "version": "1.0.0"
+          },
+          "paths": {
+            "/database": {
+              "description": "Database operations handled internally by the application"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

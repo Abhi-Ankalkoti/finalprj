@@ -1,0 +1,52 @@
+[
+  {
+    "id": "TC001",
+    "title": "user login with valid credentials",
+    "description": "Test the /login endpoint with valid username and password to verify successful user authentication and session creation."
+  },
+  {
+    "id": "TC002",
+    "title": "user login with invalid credentials",
+    "description": "Test the /login endpoint with incorrect username or password to ensure the system returns a 401 status and denies access."
+  },
+  {
+    "id": "TC003",
+    "title": "user registration with valid data",
+    "description": "Test the /register endpoint by submitting a new username and password to verify successful user account creation."
+  },
+  {
+    "id": "TC004",
+    "title": "user logout functionality",
+    "description": "Test the /logout endpoint to confirm that the user session is terminated and the user is redirected to the login page."
+  },
+  {
+    "id": "TC005",
+    "title": "resume upload with valid pdf and parameters",
+    "description": "Test the /upload_resume endpoint by uploading a valid PDF resume along with question count, job role, and HR question inclusion to verify successful text extraction and AI question generation."
+  },
+  {
+    "id": "TC006",
+    "title": "resume upload with invalid file format",
+    "description": "Test the /upload_resume endpoint by uploading a non-PDF file or corrupted file to ensure the system returns a 400 error indicating invalid file."
+  },
+  {
+    "id": "TC007",
+    "title": "display generated interview questions",
+    "description": "Test the /questions endpoint to verify that the generated interview questions based on the uploaded resume and job role are correctly rendered."
+  },
+  {
+    "id": "TC008",
+    "title": "evaluate interview answer with valid data",
+    "description": "Test the /evaluate_answer endpoint by submitting a valid answer and question index to verify AI-powered evaluation and feedback are returned successfully."
+  },
+  {
+    "id": "TC009",
+    "title": "ats compatibility analysis with valid resume",
+    "description": "Test the /check_ats endpoint by uploading a valid resume PDF and job role to verify ATS compatibility scoring and skill gap recommendations are provided."
+  },
+  {
+    "id": "TC010",
+    "title": "admin dashboard access control and data display",
+    "description": "Test the /admin_dashboard endpoint to ensure only admin users can access the dashboard and that user analytics and reports are displayed correctly."
+  }
+]
