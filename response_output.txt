@@ -1,0 +1,14 @@
+1. **HR Introduction**  
+   *"Can you walk me through your background and how your experiences, especially as CTO at RankTrek, have prepared you for this Full Stack Developer role?"*
+
+2. **HR Introduction**  
+   *"Why are you interested in this position, and what specifically about our company excites you as a Full Stack Developer?"*
+
+3. **Technical Skills & Frontend Technologies**  
+   *"In your RankTrek project, you mentioned optimizing UX using React and TailwindCSS. Can you describe a specific challenge you faced while working with these frontend technologies and how you resolved it?"*
+
+4. **Backend Technologies & Databases**  
+   *"Your AlertQ project involved using MongoDB, Express, React, and Node.js. How did you ensure seamless integration between the frontend and backend, and what strategies did you employ to manage data efficiently in MongoDB?"*
+
+5. **Problem-Solving & DevOps**  
+   *"In your Smart Health Band project, you implemented cloud sync and predictive alert systems via Google Cloud. Can you share an instance where you had to troubleshoot a deployment issue or optimize performance in a cloud-based environment, and how did you approach it?"*
